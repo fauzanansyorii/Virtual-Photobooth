@@ -109,7 +109,10 @@ $("#create").onclick = async () => {
   const id = "ldr" + uid();
   peer = new Peer(id);
   peer.on("open", () => {
-    $("#link").value = location.href.split("#")[0] + "#" + id;
+    const inviteUrl = new URL(location.href);
+    inviteUrl.hash = "";
+    inviteUrl.searchParams.set("room", id);
+    $("#link").value = inviteUrl.toString();
     $("#hostCode").textContent = id.slice(3).toUpperCase();
     $("#share").hidden = false;
     $("#create").hidden = true;
@@ -135,7 +138,9 @@ $("#copy").onclick = () => {
     ? navigator.share({ url: u, title: "Join my photobooth" }).catch(() => {})
     : navigator.clipboard.writeText(u).then(() => toast("Link copied"));
 };
-if (location.hash.length > 1) {
+const inviteId =
+  new URLSearchParams(location.search).get("room") || location.hash.slice(1);
+if (inviteId) {
   $("#create").hidden = true;
   $("#inv").hidden = false;
 }
@@ -165,7 +170,7 @@ async function joinRoom(hid) {
     $("#joinByCode").disabled = false;
   });
 }
-$("#join").onclick = () => joinRoom(location.hash.slice(1));
+$("#join").onclick = () => joinRoom(inviteId);
 $("#joinByCode").onclick = () => {
   const code = $("#roomCode").value.trim().replace(/\s+/g, "");
   joinRoom("ldr" + code.toLowerCase());
