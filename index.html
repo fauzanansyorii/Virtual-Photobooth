@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Virtual Photobooth</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Dancing+Script:wght@600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<section class="screen on" id="lobby">
+  <h1>Virtual Photobooth</h1>
+  <p>Website photobooth virtual,<br>by Fauzan Akbar Ansyori.</p>
+  <button class="btn" id="create">Buat room</button>
+  <div id="inv" hidden>
+    <p>Kamu diundang untuk bergabung ke photobooth.</p>
+    <button class="btn" id="join">Join room</button>
+  </div>
+  <div class="join-by-code" id="joinCodePanel">
+    <p>atau bergabung menggunakan kode.</p>
+    <input id="roomCode" maxlength="6" autocomplete="off" autocapitalize="characters" placeholder="Masukan Kode" aria-label="Room code">
+    <button class="btn ghost" id="joinByCode">Masuk</button>
+  </div>
+  <div id="share" hidden style="width:100%;max-width:340px">
+    <p>Kirim link ini ke partner kamu, lalu tunggu di sini.</p>
+    <input id="link" readonly>
+    <button class="btn ghost" id="copy">Share link</button>
+    <p style="margin:18px 0 8px">atau bagikan kode ini.</p>
+    <div class="room-code" id="hostCode"></div>
+  </div>
+</section>
+
+<section class="screen" id="booth">
+  <div class="hd"><span>Photobooth</span><span class="pill" id="st">Terhubung</span></div>
+  <div id="vstage" class="side">
+    <video id="lv" autoplay playsinline muted></video>
+    <video id="rv" autoplay playsinline muted></video>
+    <div id="cnt"></div><div id="cd"></div><div id="fl"></div>
+  </div>
+  <div class="ctl">
+    <div class="lbl"><b>Timer</b><div class="row" id="tmr"></div></div>
+    <button class="btn" id="start">Ambil 4 foto</button>
+  </div>
+</section>
+
+<section class="screen" id="edit">
+  <div class="hd"><span>Edit</span>
+    <span style="display:flex;gap:8px"><button class="chip" id="del">Hapus</button><button class="btn" id="dl" style="padding:8px 18px">Download</button></span></div>
+  <div id="stage"><canvas id="c"></canvas></div>
+  <div id="panel"></div>
+  <nav>
+    <button data-tab="frame" class="on"><b>▢</b>Frame</button>
+    <button data-tab="filter"><b>◐</b>Filter</button>
+    <button data-tab="deco"><b>✦</b>Dekorasi</button>
+  </nav>
+</section>
+<div id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.5.4/peerjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
+
