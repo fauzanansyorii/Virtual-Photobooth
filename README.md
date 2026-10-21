@@ -1,4 +1,4 @@
-# Two Frames — Virtual Photobooth
+# Virtual Photobooth
 
 Photobooth web untuk dua orang yang berada di tempat berbeda. Ambil foto bersama, edit hasilnya, lalu unduh photostrip.
 
@@ -51,3 +51,7 @@ Kode room berlaku selama room host masih aktif. Jika host menutup halaman atau k
 - Kedua user perlu mengizinkan akses kamera dan menjaga halaman tetap terbuka selama sesi.
 - Koneksi antarperangkat memerlukan internet. Jaringan atau firewall tertentu dapat membatasi koneksi peer-to-peer.
 - Hasil foto dibuat di browser dan diunduh ke perangkat user.
+
+## Demo Aplikasi
+
+https://virtual-photobooth-tau.vercel.app/

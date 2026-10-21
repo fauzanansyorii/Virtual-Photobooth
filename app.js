@@ -10,12 +10,36 @@ let peer,
   local,
   isHost = false,
   running = false,
+  editBackGuard = false,
+  editUrl = "",
   cfg = { timer: 3 },
   canvas,
   strip,
   remote = false;
 const show = (id) =>
   $$(".screen").forEach((s) => s.classList.toggle("on", s.id === id));
+function guardEditBack() {
+  if (editBackGuard) return;
+  editUrl = location.href;
+  history.pushState({ photoboothEditGuard: true }, "", editUrl);
+  editBackGuard = true;
+}
+window.addEventListener("popstate", () => {
+  if (!editBackGuard || !$("#edit").classList.contains("on")) return;
+  history.pushState({ photoboothEditGuard: true }, "", editUrl);
+  $("#backConfirm").hidden = false;
+  $("#stayEditing").focus();
+});
+$("#stayEditing").onclick = () => {
+  $("#backConfirm").hidden = true;
+  $("#del").focus();
+};
+$("#leaveEdit").onclick = () => {
+  $("#backConfirm").hidden = true;
+  editBackGuard = false;
+  history.replaceState(null, "", editUrl);
+  show("lobby");
+};
 const send = (m) => {
   if (conn && conn.open) conn.send(m);
 };
@@ -445,6 +469,7 @@ async function startEdit(list) {
   x.font = 'italic 34px "Cormorant Garamond",serif';
   x.fillText("♡ " + new Date().toLocaleDateString() + " ♡", W / 2, H - 24);
   show("edit");
+  guardEditBack();
   fabric.Object.prototype.set({
     transparentCorners: false,
     cornerColor: "#c98b94",

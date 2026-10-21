@@ -397,6 +397,76 @@ nav b {
   opacity: 1;
 }
 
+.back-confirm {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.back-confirm[hidden] {
+  display: none;
+}
+
+.back-confirm__scrim {
+  position: absolute;
+  inset: 0;
+  background: #2b24228c;
+  backdrop-filter: blur(5px);
+  animation: confirm-fade-in 0.18s ease-out both;
+}
+
+.back-confirm__dialog {
+  position: relative;
+  width: min(100%, 420px);
+  border: 1px solid #ffffffcf;
+  border-radius: 24px;
+  padding: 28px;
+  background: var(--surface, #fffdfa);
+  box-shadow: 0 24px 80px #1c151344;
+  animation: confirm-rise-in 0.22s ease-out both;
+}
+
+.back-confirm__dialog .eyebrow {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.back-confirm__dialog h2 {
+  margin: 0 0 10px;
+  color: var(--ink, #342d2b);
+  font: italic 500 2rem/1.1 'Cormorant Garamond', serif;
+}
+
+.back-confirm__dialog p {
+  margin: 0 0 24px;
+  color: var(--muted, #827975);
+  font-size: 14px;
+}
+
+.back-confirm__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.back-confirm__actions .btn {
+  min-height: 46px;
+  padding: 11px 16px;
+}
+
+@keyframes confirm-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes confirm-rise-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
 /* Polished minimal interface */
 :root {
   --bg: #f7f4ef;

@@ -11,7 +11,7 @@
 
 <section class="screen on" id="lobby">
   <h1>Virtual Photobooth</h1>
-  <p>Website photobooth virtual,<br>by Fauzan Akbar Ansyori.</p>
+  <p>Website photobooth virtual 2 orang secara langsung dari jarak jauh,<br>by Fauzan Akbar Ansyori.</p>
   <button class="btn" id="create">Buat room</button>
   <div id="inv" hidden>
     <p>Kamu diundang untuk bergabung ke photobooth.</p>
@@ -56,6 +56,17 @@
   </nav>
 </section>
 <div id="toast"></div>
+<div id="backConfirm" class="back-confirm" hidden>
+  <div class="back-confirm__scrim"></div>
+  <section class="back-confirm__dialog" role="dialog" aria-modal="true" aria-labelledby="backConfirmTitle" aria-describedby="backConfirmText" tabindex="-1">
+    <h2 id="backConfirmTitle">Kembali ke halaman awal?</h2>
+    <p id="backConfirmText">Sesi edit bersama akan ditutup di layar ini.</p>
+    <div class="back-confirm__actions">
+      <button class="btn ghost" id="stayEditing">Tetap mengedit</button>
+      <button class="btn" id="leaveEdit">Kembali</button>
+    </div>
+  </section>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.5.4/peerjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
